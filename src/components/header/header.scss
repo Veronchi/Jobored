@@ -1,0 +1,42 @@
+@import '@/styles/constants.scss';
+
+.header {
+  display: flex;
+  justify-content: start;
+  gap: 280px;
+  padding: 24px 0;
+
+  &__nav {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 60px;
+  }
+
+  &__link {
+    font-weight: $fw-medium;
+    font-size: $fs-s;
+    line-height: 20px;
+
+    &_active {
+      color: $blue-500;
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 12px;
+
+  &__text {
+    @include poppins;
+    font-size: $fs-l;
+    font-weight: $fw-semi-bold;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+    color: $black;
+    margin: 0;
+  }
+}
