@@ -4,9 +4,9 @@ import { Header } from '@/components';
 
 export const Layout: FC = () => {
   return (
-    <div className="container">
+    <>
       <Header />
       <Outlet />
-    </div>
+    </>
   );
 };

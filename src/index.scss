@@ -16,6 +16,8 @@ body {
   height: 100%;
 }
 
-.container {
-  padding: 0 162px;
+.main {
+  height: 100%;
+  background-color: $background;
+  padding: 40px 162px 0;
 }
