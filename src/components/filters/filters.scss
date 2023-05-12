@@ -1,4 +1,5 @@
 @import '@/styles/constants.scss';
+@import '@/styles/inputs.scss';
 
 .filters {
   width: 315px;
@@ -71,14 +72,7 @@
 }
 
 .input {
-  border: 1px solid $grey-300;
-  border-radius: 8px;
-  color: $black;
-  caret-color: $blue-500;
-
-  &:hover {
-    border: 1px solid $blue-500;
-  }
+  @include input;
 
   &__right-section {
     right: 7px;

@@ -1,0 +1,21 @@
+@mixin input {
+  font-weight: $fw-regular;
+  font-size: $fs-xs;
+  line-height: 21px;
+  color: $black;
+  border: 1px solid $grey-300;
+  border-radius: 8px;
+  caret-color: $blue-500;
+
+  &::placeholder {
+    color: $grey-500;
+  }
+
+  &:hover {
+    border-color: $blue-500;
+  }
+
+  &:focus {
+    border-color: $blue-500;
+  }
+}
