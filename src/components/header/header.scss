@@ -1,6 +1,7 @@
 @import '@/styles/constants.scss';
 
 .header {
+  flex: 0 0 auto;
   display: flex;
   justify-content: start;
   gap: 280px;
@@ -21,6 +22,10 @@
 
     &_active {
       color: $blue-500;
+    }
+
+    &:hover {
+      color: $black;
     }
 
     &:active {
