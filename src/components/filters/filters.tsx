@@ -33,7 +33,6 @@ export const Filters: FC = () => {
           Button: {
             classNames: {
               root: 'apply-btn',
-              label: 'apply-btn__label',
             },
           },
         },
@@ -62,18 +61,7 @@ export const Filters: FC = () => {
           <NumberInput placeholder="От" type="number" />
           <NumberInput placeholder="До" type="number" />
         </div>
-        <Button
-          sx={{
-            '&:hover': {
-              backgroundColor: '#92c1ff',
-            },
-            '&:active': {
-              backgroundColor: '#3b7cd3',
-            },
-          }}
-        >
-          Применить
-        </Button>
+        <Button>Применить</Button>
       </aside>
     </MantineProvider>
   );

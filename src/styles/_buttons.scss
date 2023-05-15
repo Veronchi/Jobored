@@ -1,0 +1,23 @@
+@import './constants.scss';
+
+@mixin primary-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: $fw-medium;
+  font-size: $fs-xs;
+  line-height: 21px;
+  background-color: $blue-500;
+  border-radius: 8px;
+  border: none;
+}
+
+@mixin btn-hover {
+  &:hover {
+    background-color: $blue-400;
+  }
+}
+
+@mixin btn-active {
+  &:active {
+    background-color: $blue-600;
+  }
+}

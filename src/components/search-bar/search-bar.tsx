@@ -17,7 +17,7 @@ export const SearchBar: FC = () => {
             },
           },
           Button: {
-            classNames: { root: 'search__btn', label: 'label' },
+            classNames: { root: 'search__btn' },
           },
         },
       }}

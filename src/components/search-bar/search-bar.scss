@@ -1,8 +1,10 @@
 @import '@/styles/constants.scss';
 @import '@/styles/inputs.scss';
+@import '@/styles/buttons.scss';
 
 .search {
   width: 100%;
+  align-self: start;
 
   &__input {
     @include input;
@@ -21,23 +23,16 @@
   }
 
   &__btn {
+    @include primary-btn;
     height: 32px;
-    background-color: $blue-500;
-    border-radius: 8px;
-    padding: 5.5px 20px;
+    padding: 5px 20px;
 
     &:hover {
-      background-color: $blue-400;
+      @include btn-hover;
     }
 
     &:active {
-      background-color: $blue-600;
+      @include btn-active;
     }
-  }
-
-  .label {
-    font-weight: $fw-medium;
-    font-size: $fs-xs;
-    line-height: 21px;
   }
 }
