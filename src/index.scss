@@ -2,22 +2,25 @@
 @import '@/styles/constants.scss';
 
 :root {
-  height: 100%;
-  @include inter;
-  color: $black;
-}
-
-#root {
-  height: 100%;
+  height: 100vh;
 }
 
 body {
   min-width: 320px;
-  height: 100%;
+  height: 100vh;
+  background-color: $background;
+  @include inter;
+  color: $black;
+  box-sizing: border-box;
 }
 
-.main {
-  height: 100%;
-  background-color: $background;
+#root {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
+main {
+  flex: 1 1 0px;
   padding: 40px 162px 0;
 }
