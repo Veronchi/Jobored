@@ -46,7 +46,7 @@ export const Filters: FC = () => {
         <div className="filters__section">
           <h3 className="filters__subtitle">Отрасль</h3>
           <Select
-            placeholder="Выберете отрасль"
+            placeholder="Выберите отрасль"
             styles={() => ({
               rightSection: { pointerEvents: 'none' },
             })}
