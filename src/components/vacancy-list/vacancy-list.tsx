@@ -13,8 +13,8 @@ export const VacancyList: FC = () => {
         marginBottom: '40px',
       }}
     >
-      <Vacancy />
-      <Vacancy />
+      <Vacancy isLink={true} />
+      <Vacancy isLink={true} />
     </List>
   );
 };

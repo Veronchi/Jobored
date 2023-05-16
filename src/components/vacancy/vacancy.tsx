@@ -2,8 +2,14 @@ import { FC, useState } from 'react';
 import { Box, Title, Text, ActionIcon, ThemeIcon, ColorSwatch, Paper } from '@mantine/core';
 import { StarIcon } from './start-icon';
 import { LocationIcon } from './location-icon';
+import { Link } from 'react-router-dom';
+import { Paths } from '@/utils/constants';
 
-export const Vacancy: FC = () => {
+type VacancyProps = {
+  isLink: boolean;
+};
+
+export const Vacancy: FC<VacancyProps> = ({ isLink }) => {
   const [fillColor, setFillColor] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -22,16 +28,18 @@ export const Vacancy: FC = () => {
 
   return (
     <Paper
+      component={Link}
+      to={`/${Paths.VACANCY}`}
       sx={({ white, other, colors, black }) => ({
         backgroundColor: white,
         border: `1px solid ${colors.grey[1]}`,
         borderRadius: other.br[2],
         color: black,
         padding: '24px',
-        cursor: 'pointer',
+        cursor: isLink ? 'pointer' : 'auto',
 
         '&:hover': {
-          boxShadow: `0 1px 3px ${colors.grey[3]}`,
+          boxShadow: isLink ? `0 1px 3px ${colors.grey[3]}` : 'none',
         },
       })}
     >

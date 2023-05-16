@@ -10,6 +10,7 @@ body {
   height: 100vh;
   background-color: $background;
   @include inter;
+  font-style: normal;
   color: $black;
   box-sizing: border-box;
 }
@@ -22,5 +23,5 @@ body {
 
 main {
   flex: 1 1 auto;
-  padding: 40px 162px 44px;
+  padding: 40px 23% 44px;
 }
