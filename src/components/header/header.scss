@@ -7,17 +7,42 @@
   background-color: $white;
   padding: 24px 11.25%;
 
+  @media (max-width: 900px) {
+    gap: 100px;
+    padding: 24px 8%;
+  }
+
+  @media (max-width: 540px) {
+    gap: 50px;
+    padding: 24px 4%;
+  }
+
+  @media (max-width: 440px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 0;
+  }
+
   &__nav {
     display: flex;
     justify-content: start;
     align-items: center;
     gap: 60px;
+
+    @media (max-width: 845px) {
+      gap: 40px;
+    }
   }
 
   &__link {
     font-weight: $fw-medium;
     font-size: $fs-s;
     line-height: 20px;
+
+    @media (max-width: 610px) {
+      font-size: $fs-xs;
+    }
 
     &_active {
       color: $blue-500;
@@ -47,5 +72,9 @@
     letter-spacing: -0.02em;
     color: $black;
     margin: 0;
+
+    @media (max-width: 610px) {
+      font-size: $fs-m;
+    }
   }
 }

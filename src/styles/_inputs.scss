@@ -8,6 +8,10 @@
   border-radius: 8px;
   caret-color: $blue-500;
 
+  @media (max-width: 370px) {
+    font-size: 12px;
+  }
+
   &::placeholder {
     color: $grey-500;
   }

@@ -20,12 +20,21 @@
 
   &__right-section {
     right: 36px;
+
+    @media (max-width: 360px) {
+      right: 25px;
+    }
   }
 
   &__btn {
     @include primary-btn;
     height: 32px;
     padding: 5px 20px;
+
+    @media (max-width: 370px) {
+      height: 30px;
+      padding: 5px 8px;
+    }
 
     &:hover {
       @include btn-hover;

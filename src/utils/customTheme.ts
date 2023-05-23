@@ -32,7 +32,7 @@ export const customTheme: MantineThemeOverride = {
     xl: '1.75rem',
   },
   other: {
-    lh: ['19px', '20px', '22px', '24px,', '29px'],
+    lh: ['19px', '20px', '22px', '24px', '29px', '34px'],
     br: ['4px', '8px', '12px'],
   },
 };

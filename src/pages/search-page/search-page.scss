@@ -6,6 +6,15 @@
   gap: 28px;
   padding-left: 11.25%;
   padding-right: 11.25%;
+
+  @media (max-width: 960px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
 }
 
 .content {

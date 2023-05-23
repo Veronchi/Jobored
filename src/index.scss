@@ -24,4 +24,14 @@ body {
 main {
   flex: 1 1 auto;
   padding: 40px 23% 44px;
+
+  @media (max-width: 960px) {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+
+  @media (max-width: 540px) {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }
