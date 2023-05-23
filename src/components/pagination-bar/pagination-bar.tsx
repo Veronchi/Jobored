@@ -1,7 +1,24 @@
 import { FC } from 'react';
 import { MantineProvider, Pagination } from '@mantine/core';
+import { useAppSelector } from '@/store/hooks';
+import { useLocation } from 'react-router-dom';
 
-export const PaginationBar: FC = () => {
+type PaginationBarProps = {
+  hadleClick: (page: number) => void;
+  totalAmount?: number;
+};
+
+export const PaginationBar: FC<PaginationBarProps> = ({ hadleClick, totalAmount }) => {
+  const { pathname } = useLocation();
+  const pagSearch = useAppSelector((state) => state.pagination);
+  const pagFav = useAppSelector((state) => state.paginationFav);
+
+  const setNumberPage = (page: number) => {
+    hadleClick(page);
+  };
+
+  const favTotal = totalAmount && totalAmount > 4 ? totalAmount : 4;
+
   return (
     <MantineProvider
       inherit
@@ -15,6 +32,10 @@ export const PaginationBar: FC = () => {
                 borderRadius: other.br[0],
                 fontWeight: 400,
                 fontSize: fontSizes.sm,
+
+                '@media (max-width: 410px)': {
+                  padding: '0',
+                },
 
                 '&:first-of-type, &:last-child': {
                   color: colors.grey[4],
@@ -48,7 +69,27 @@ export const PaginationBar: FC = () => {
         },
       }}
     >
-      <Pagination total={3} sx={{ alignSelf: 'center' }} />
+      {pathname === '/favorites' ? (
+        <Pagination
+          total={Math.ceil(favTotal / pagFav.count)}
+          value={pagFav.page}
+          siblings={0}
+          onChange={setNumberPage}
+          sx={{
+            alignSelf: 'center',
+          }}
+        />
+      ) : (
+        <Pagination
+          total={pagSearch.total / pagSearch.count}
+          value={pagSearch.page}
+          siblings={0}
+          onChange={setNumberPage}
+          sx={{
+            alignSelf: 'center',
+          }}
+        />
+      )}
     </MantineProvider>
   );
 };

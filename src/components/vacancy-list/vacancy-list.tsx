@@ -1,8 +1,13 @@
 import { FC } from 'react';
 import { Vacancy } from '..';
 import { List } from '@mantine/core';
+import { VacancyObj } from '@/utils/types';
 
-export const VacancyList: FC = () => {
+type VacancyListProps = {
+  vacancies: Array<VacancyObj>;
+};
+
+export const VacancyList: FC<VacancyListProps> = ({ vacancies }) => {
   return (
     <List
       sx={{
@@ -13,8 +18,9 @@ export const VacancyList: FC = () => {
         marginBottom: '40px',
       }}
     >
-      <Vacancy isLink={true} />
-      <Vacancy isLink={true} />
+      {vacancies.map((vacancy) => (
+        <Vacancy key={vacancy.id} isLink={true} vacancy={vacancy} />
+      ))}
     </List>
   );
 };

@@ -18,13 +18,10 @@ export const Header: FC = () => {
         <h1 className="logo__text">Jobored</h1>
       </Link>
       <nav className="header__nav">
-        <Link className={`header__link ${Boolean(isFav) ? '' : 'header__link_active'}`} to={HOME}>
+        <Link className={`header__link ${isFav ? '' : 'header__link_active'}`} to={HOME}>
           Поиск Вакансий
         </Link>
-        <Link
-          className={`header__link ${Boolean(isFav) ? 'header__link_active' : ''}`}
-          to={FAVORITES}
-        >
+        <Link className={`header__link ${isFav ? 'header__link_active' : ''}`} to={FAVORITES}>
           Избранное
         </Link>
       </nav>

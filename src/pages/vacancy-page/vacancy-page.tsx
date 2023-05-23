@@ -1,41 +1,82 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import SyncLoader from 'react-spinners/SyncLoader';
+import { override } from '@/utils/constants';
+import { Box, MantineProvider, TypographyStylesProvider, Text, MediaQuery } from '@mantine/core';
 import { Vacancy } from '@/components';
-import { Box, List, MantineProvider, Title } from '@mantine/core';
+import { fetchVacancy } from '@/service/vacancies';
+import { VacancyObj } from '@/utils/types';
 import './vacancy-page.scss';
 
 export const VacancyPage: FC = () => {
+  const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<VacancyObj>({
+    id: 0,
+    payment_from: 0,
+    payment_to: 0,
+    profession: '',
+    currency: '',
+    vacancyRichText: '',
+    type_of_work: {
+      title: '',
+    },
+    town: {
+      title: '',
+    },
+    firm_name: '',
+  });
+
+  useEffect(() => {
+    const getVacancy = async () => {
+      if (id) {
+        const vacancy = await fetchVacancy(id);
+        setData(vacancy);
+        setIsLoading(false);
+      }
+    };
+
+    getVacancy();
+  }, [id]);
+
+  if (isLoading) return <SyncLoader cssOverride={override} color="#3b7cd3" size={25} />;
+
   return (
     <main className="vacancy">
-      <Vacancy isLink={false} />
+      <Vacancy isLink={false} vacancy={data} />
       <MantineProvider
         inherit
         theme={{
           components: {
-            Title: {
+            TypographyStylesProvider: {
               styles: ({ fontSizes, other, black }) => ({
                 root: {
-                  fontWeight: 700,
-                  fontSize: fontSizes.md,
-                  lineHeight: other.lh[1],
-                  color: black,
-                  marginBottom: '16px',
-                },
-              }),
-            },
-            List: {
-              styles: ({ fontSizes, other, black }) => ({
-                root: {
-                  listStyle: 'initial',
-                  marginLeft: '22px',
-                  '&:not(:last-child)': {
-                    marginBottom: '20px',
+                  '& p, & i, & b': {
+                    fontWeight: 700,
+                    fontSize: fontSizes.md,
+                    lineHeight: other.lh[1],
+                    color: black,
+                    marginBottom: '0',
                   },
-                },
-                item: {
-                  fontWeight: 400,
-                  fontSize: fontSizes.sm,
-                  lineHeight: other.lh[2],
-                  color: black,
+
+                  '& ul': {
+                    listStyle: 'initial',
+                    marginLeft: '22px',
+                    marginBottom: '0',
+                    paddingLeft: '0',
+                    marginTop: '16px',
+                    '&:not(:last-child)': {
+                      marginBottom: '20px',
+                    },
+
+                    '& li': {
+                      fontWeight: 400,
+                      fontSize: fontSizes.sm,
+                      lineHeight: other.lh[2],
+                      color: black,
+                      marginTop: '0',
+                    },
+                  },
                 },
               }),
             },
@@ -50,40 +91,30 @@ export const VacancyPage: FC = () => {
             padding: '24px',
           })}
         >
-          <Title order={3}>Обязанности:</Title>
-          <List>
-            <List.Item>
-              Разработка дизайн-макетов для наружной, интерьерной рекламы, полиграфии, сувенирной
-              продукции.
-            </List.Item>
-            <List.Item>Подготовка и вёрстка макетов в CorelDraw, Adobe photoshop.</List.Item>
-            <List.Item>Создание дизайна логотипов и брендбуков</List.Item>
-            <List.Item>
-              Управленческая функция: обучение, адаптация дизайнеров, их контроль, оценка
-            </List.Item>
-          </List>
-
-          <Title order={3}>Требования:</Title>
-          <List>
-            <List.Item>Собеседование – после успешного прохождения тестового задания</List.Item>
-            <List.Item>Рассматриваются кандидаты только с опытом работы</List.Item>
-            <List.Item>Обязательно - наличие портфолио</List.Item>
-            <List.Item>
-              Умение самостоятельно принимать решения, умение объективно оценивать свою работу,
-              работать в режиме многозадачности и переключаться с одного задания к другому и
-              планировать свой день. Соблюдать сроки.
-            </List.Item>
-            <List.Item>
-              Ответственный, исполнительный, целеустремленный, большим плюсом будет опыт управления
-            </List.Item>
-          </List>
-
-          <Title order={3}>Условия:</Title>
-          <List>
-            <List.Item>Оформление по контракту</List.Item>
-            <List.Item>Полный социальный пакет</List.Item>
-            <List.Item>Премирование по результатам работы</List.Item>
-          </List>
+          {data.vacancyRichText ? (
+            <MediaQuery
+              query="(max-width: 960px)"
+              styles={({ fontSizes, other }) => ({
+                '& p, & i, & b': {
+                  fontWeight: 600,
+                  fontSize: fontSizes.sm,
+                },
+                '& ul': {
+                  marginTop: '10px',
+                  '& li': {
+                    fontSize: fontSizes.xs,
+                    lineHeight: other.lh[1],
+                  },
+                },
+              })}
+            >
+              <TypographyStylesProvider>
+                <div dangerouslySetInnerHTML={{ __html: data.vacancyRichText }} />
+              </TypographyStylesProvider>
+            </MediaQuery>
+          ) : (
+            <Text sx={{ textAlign: 'center' }}>Описание вакансии отсутствует</Text>
+          )}
         </Box>
       </MantineProvider>
     </main>
