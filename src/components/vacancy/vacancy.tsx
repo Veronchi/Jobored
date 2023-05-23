@@ -137,7 +137,7 @@ export const Vacancy: FC<VacancyProps> = ({ isLink, vacancy }) => {
               fontSize: isLink ? fontSizes.xs : fontSizes.sm,
             },
             '@media (max-width: 740px)': {
-              fontSize: '12px',
+              fontSize: fontSizes.xs,
               ineHeight: other.lh[0],
             },
 
@@ -161,7 +161,7 @@ export const Vacancy: FC<VacancyProps> = ({ isLink, vacancy }) => {
               fontSize: isLink ? fontSizes.xs : fontSizes.sm,
             },
 
-            '@media (max-width: 7400px)': {
+            '@media (max-width: 740px)': {
               fontSize: '12px',
               ineHeight: other.lh[0],
             },

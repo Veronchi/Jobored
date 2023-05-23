@@ -6,3 +6,4 @@ export { VacancyList } from './vacancy-list/vacancy-list';
 export { Vacancy } from './vacancy/vacancy';
 export { PaginationBar } from './pagination-bar/pagination-bar';
 export { StarBtn } from './vacancy/star-btn/star-btn';
+export { NavigateBtn } from './navigate-btn/navigate-btn';

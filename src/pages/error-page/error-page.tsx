@@ -1,19 +1,9 @@
-import { FC, useEffect } from 'react';
-import { useAppDispatch } from '@/store/hooks';
-import EmptyStateImg from '@/assets/img/empty-state.svg';
+import { FC } from 'react';
+import baloonImg from '@/assets/img/balloon.svg';
 import { Box, Image, Title } from '@mantine/core';
-import { removeFilters } from '@/store/slices/filters-slice';
-import { resetTotal } from '@/store/slices/pagination-slice';
 import { NavigateBtn } from '@/components';
 
-export const EmptyStatePage: FC = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(removeFilters());
-    dispatch(resetTotal());
-  }, []);
-
+export const ErrorPage: FC = () => {
   return (
     <Box component="main" sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box
@@ -29,7 +19,7 @@ export const EmptyStatePage: FC = () => {
           },
         }}
       >
-        <Image width="240px" height="230.27px" src={EmptyStateImg} alt="empty state image" />
+        <Image width="240px" height="230.27px" src={baloonImg} alt="error page image" />
         <Title
           order={2}
           sx={({ fontSizes, other }) => ({
@@ -47,7 +37,7 @@ export const EmptyStatePage: FC = () => {
             },
           })}
         >
-          Упс, здесь еще ничего нет!
+          Упс, что-то пошло не так!
         </Title>
         <NavigateBtn />
       </Box>
