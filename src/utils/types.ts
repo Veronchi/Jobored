@@ -1,12 +1,3 @@
-export type AuthDataProps = {
-  access_token: string | null;
-  refresh_token: string | null;
-  ttl: number | null;
-  expires_in: number | null;
-  token_type: string | null;
-  reg_user_resumes_count: number | null;
-};
-
 export type VacancyObj = {
   id: number;
   payment_from: number;

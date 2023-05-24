@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
 
 const headers = {
   'x-secret-key': 'GEU4nvd3rej*jeh.eqp',
@@ -15,5 +15,21 @@ const $authHost = axios.create({
   baseURL: 'https://startup-summer-proxy-production.up.railway.app/2.0',
   headers,
 });
+
+const authInterceptor = async (
+  config: InternalAxiosRequestConfig
+): Promise<InternalAxiosRequestConfig> => {
+  const { headers } = config;
+  const TOKEN = localStorage.getItem('token');
+
+  headers.authorization = `${TOKEN}`;
+
+  return {
+    ...config,
+    headers,
+  };
+};
+
+$authHost.interceptors.request.use(authInterceptor);
 
 export { $host, $authHost };

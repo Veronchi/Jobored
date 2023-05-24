@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Filters, VacancyList, SearchBar, PaginationBar } from '@/components';
 import SyncLoader from 'react-spinners/SyncLoader';
+import { Filters, VacancyList, SearchBar, PaginationBar } from '@/components';
 import { Paths, override } from '@/utils/constants';
 import { fetchAllVacancies, fetchCatalogues, fetchFilteredData } from '@/service/vacancies';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -26,6 +26,7 @@ export const SearchPage: FC = () => {
   const getVacancies = async (page: number) => {
     setIsLoading(true);
     const data = await fetchAllVacancies({ page, keyword, catalogues, payment_from, payment_to });
+
     if (data.objects.length) {
       dispatch(setVacancies(data));
       setIsLoading(false);
@@ -35,12 +36,16 @@ export const SearchPage: FC = () => {
   };
 
   const getCatalogues = async () => {
+    setIsLoading(true);
+
     const data = await fetchCatalogues();
     const dataArr: Array<SelectItem> = data.map(({ key, title_rus }) => ({
       value: String(key),
       label: String(title_rus),
     }));
+
     setSelectData(dataArr);
+    setIsLoading(false);
   };
 
   const handlePaginationClick = (page: number) => {
