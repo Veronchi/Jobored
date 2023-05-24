@@ -27,7 +27,7 @@ export const SearchPage: FC = () => {
     setIsLoading(true);
     const data = await fetchAllVacancies({ page, keyword, catalogues, payment_from, payment_to });
 
-    if (data.objects.length) {
+    if (data && data.objects.length) {
       dispatch(setVacancies(data));
       setIsLoading(false);
     } else {
@@ -39,13 +39,18 @@ export const SearchPage: FC = () => {
     setIsLoading(true);
 
     const data = await fetchCatalogues();
-    const dataArr: Array<SelectItem> = data.map(({ key, title_rus }) => ({
-      value: String(key),
-      label: String(title_rus),
-    }));
 
-    setSelectData(dataArr);
-    setIsLoading(false);
+    if (data) {
+      const dataArr: Array<SelectItem> = data.map(({ key, title_rus }) => ({
+        value: String(key),
+        label: String(title_rus),
+      }));
+
+      setSelectData(dataArr);
+      setIsLoading(false);
+    } else {
+      navigate(Paths.EMPTY_STATE, { replace: true, state: 'main' });
+    }
   };
 
   const handlePaginationClick = (page: number) => {
@@ -57,7 +62,7 @@ export const SearchPage: FC = () => {
     setIsLoading(true);
     const data = await fetchFilteredData({ page, keyword, catalogues, payment_from, payment_to });
 
-    if (data.objects.length) {
+    if (data && data.objects.length) {
       dispatch(setVacancies(data));
       dispatch(setPage(1));
       setIsLoading(false);

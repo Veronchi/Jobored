@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Header } from '@/components';
 import { SyncLoader } from 'react-spinners';
-import { override } from '@/utils/constants';
+import { Paths, override } from '@/utils/constants';
 import { auth } from '@/service/auth';
+import { removeCredentials, setCredentials } from '@/utils/handleCredentials';
 
 export const Layout: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const onAuth = async () => {
     const ttl = localStorage.getItem('ttl');
@@ -17,14 +19,21 @@ export const Layout: FC = () => {
       if (isExp) {
         const data = await auth();
 
-        localStorage.setItem('ttl', `${data.ttl}`);
-        localStorage.setItem('token', `${data.token_type} ${data.access_token}`);
+        if (data) {
+          setCredentials(data);
+        } else {
+          removeCredentials();
+          navigate(`/${Paths.EMPTY_STATE}`, { replace: true, state: 'main' });
+        }
       }
     } else {
       const data = await auth();
-
-      localStorage.setItem('ttl', `${data.ttl}`);
-      localStorage.setItem('token', `${data.token_type} ${data.access_token}`);
+      if (data) {
+        setCredentials(data);
+      } else {
+        removeCredentials();
+        navigate(`/${Paths.EMPTY_STATE}`, { replace: true, state: 'main' });
+      }
     }
 
     setIsLoading(false);

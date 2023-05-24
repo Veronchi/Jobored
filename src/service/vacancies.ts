@@ -1,5 +1,7 @@
 import { $authHost } from '@/service/axios';
 import { Catalogues, DataObject, VacancyObj } from '@/utils/types';
+import { notifications } from '@mantine/notifications';
+import { AxiosError } from 'axios';
 
 type FetchProps = {
   page: number;
@@ -15,31 +17,58 @@ const fetchAllVacancies = async ({
   catalogues,
   payment_from,
   payment_to,
-}: FetchProps): Promise<DataObject> => {
-  const { data } = await $authHost.get('/vacancies', {
-    params: {
-      count: 4,
-      page,
-      no_agreement: 1,
-      published: 1,
-      keyword,
-      catalogues,
-      payment_from,
-      payment_to,
-    },
-  });
+}: FetchProps): Promise<DataObject | void> => {
+  try {
+    const { data } = await $authHost.get('/vacancies', {
+      params: {
+        count: 4,
+        page,
+        no_agreement: 1,
+        published: 1,
+        keyword,
+        catalogues,
+        payment_from,
+        payment_to,
+      },
+    });
 
-  return data;
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      notifications.show({
+        title: `${error.response?.data.error.code}`,
+        message: `${error.response?.data.error.message}`,
+      });
+    }
+  }
 };
 
-const fetchVacancy = async (id: string): Promise<VacancyObj> => {
-  const { data } = await $authHost.get(`/vacancies/${id}`);
-  return data;
+const fetchVacancy = async (id: string): Promise<VacancyObj | void> => {
+  try {
+    const { data } = await $authHost.get(`/vacancies/${id}`);
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      notifications.show({
+        title: `${error.response?.data.error.code}`,
+        message: `${error.response?.data.error.message}`,
+      });
+    }
+  }
 };
 
-const fetchCatalogues = async (): Promise<Catalogues> => {
-  const { data } = await $authHost.get('/catalogues');
-  return data;
+const fetchCatalogues = async (): Promise<Catalogues | void> => {
+  try {
+    const { data } = await $authHost.get('/catalogues');
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      notifications.show({
+        title: `${error.response?.data.error.code}`,
+        message: `${error.response?.data.error.message}`,
+      });
+    }
+  }
 };
 
 const fetchFilteredData = async ({
@@ -48,21 +77,29 @@ const fetchFilteredData = async ({
   catalogues,
   payment_from,
   payment_to,
-}: FetchProps): Promise<DataObject> => {
-  const { data } = await $authHost.get('/vacancies', {
-    params: {
-      count: 4,
-      page,
-      no_agreement: 1,
-      published: 1,
-      keyword,
-      catalogues,
-      payment_from,
-      payment_to,
-    },
-  });
-
-  return data;
+}: FetchProps): Promise<DataObject | void> => {
+  try {
+    const { data } = await $authHost.get('/vacancies', {
+      params: {
+        count: 4,
+        page,
+        no_agreement: 1,
+        published: 1,
+        keyword,
+        catalogues,
+        payment_from,
+        payment_to,
+      },
+    });
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      notifications.show({
+        title: `${error.response?.data.error.code}`,
+        message: `${error.response?.data.error.message}`,
+      });
+    }
+  }
 };
 
 export { fetchAllVacancies, fetchVacancy, fetchCatalogues, fetchFilteredData };

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SyncLoader from 'react-spinners/SyncLoader';
-import { override } from '@/utils/constants';
+import { Paths, override } from '@/utils/constants';
 import { Box, MantineProvider, TypographyStylesProvider, Text, MediaQuery } from '@mantine/core';
 import { Vacancy } from '@/components';
 import { fetchVacancy } from '@/service/vacancies';
@@ -27,12 +27,19 @@ export const VacancyPage: FC = () => {
     firm_name: '',
   });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getVacancy = async () => {
       if (id) {
         const vacancy = await fetchVacancy(id);
-        setData(vacancy);
-        setIsLoading(false);
+
+        if (vacancy) {
+          setData(vacancy);
+          setIsLoading(false);
+        } else {
+          navigate(`/${Paths.EMPTY_STATE}`, { replace: true, state: 'main' });
+        }
       }
     };
 

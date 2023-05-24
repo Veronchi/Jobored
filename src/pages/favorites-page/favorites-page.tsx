@@ -37,7 +37,7 @@ export const Favorites: FC = () => {
           <PaginationBar hadleClick={handlePaginationClick} totalAmount={total} />
         </>
       ) : (
-        <Navigate to={Paths.EMPTY_STATE} replace />
+        <Navigate to={`/${Paths.EMPTY_STATE}`} replace />
       )}
     </main>
   );
