@@ -4,7 +4,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 const initialState: Pagination = {
   total: 500,
   count: 4,
-  page: 1,
+  page: 0,
 };
 
 const paginationSlice = createSlice({

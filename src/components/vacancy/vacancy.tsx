@@ -39,8 +39,6 @@ export const Vacancy: FC<VacancyProps> = ({ isLink, vacancy }) => {
         dispatch(setFavVacancies(favlist));
         localStorage.setItem('items', JSON.stringify(favlist));
       }
-    } else {
-      localStorage.setItem('items', JSON.stringify([]));
     }
   };
 

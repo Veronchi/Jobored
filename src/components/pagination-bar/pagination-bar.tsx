@@ -81,12 +81,13 @@ export const PaginationBar: FC<PaginationBarProps> = ({ hadleClick, totalAmount 
         />
       ) : (
         <Pagination
-          total={(pagSearch.total - 1) / pagSearch.count}
+          total={Math.ceil(pagSearch.total / pagSearch.count)}
           value={pagSearch.page}
           siblings={0}
           onChange={setNumberPage}
           sx={{
             alignSelf: 'center',
+            margin: 'auto',
           }}
         />
       )}

@@ -55,7 +55,7 @@ export const SearchPage: FC = () => {
 
   const handlePaginationClick = (page: number) => {
     dispatch(setPage(page));
-    getVacancies(page);
+    getVacancies(page - 1);
   };
 
   const handleFilters = async () => {

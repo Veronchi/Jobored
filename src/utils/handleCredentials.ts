@@ -8,4 +8,5 @@ export const removeCredentials = () => {
 export const setCredentials = (data: AuthDataProps) => {
   localStorage.setItem('ttl', `${data.ttl}`);
   localStorage.setItem('token', `${data.token_type} ${data.access_token}`);
+  localStorage.setItem('items', JSON.stringify([]));
 };
