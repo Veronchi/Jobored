@@ -11,10 +11,9 @@ export const VacancyList: FC<VacancyListProps> = ({ vacancies }) => {
   return (
     <List
       sx={{
-        height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '16px',
+        gap: '15px',
         marginBottom: '40px',
       }}
     >

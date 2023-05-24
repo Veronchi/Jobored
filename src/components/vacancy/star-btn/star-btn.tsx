@@ -39,6 +39,10 @@ export const StarBtn: FC<StarBtnProps> = ({ id }) => {
       data-elem={`vacancy-${id}-shortlist-button`}
       variant="transparent"
       onClick={handleClick}
+      size={'22px'}
+      sx={{
+        border: 'none',
+      }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

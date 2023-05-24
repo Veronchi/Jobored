@@ -31,7 +31,7 @@ export const SearchPage: FC = () => {
       dispatch(setVacancies(data));
       setIsLoading(false);
     } else {
-      navigate(Paths.EMPTY_STATE, { replace: true });
+      navigate(Paths.EMPTY_STATE, { replace: true, state: 'main' });
     }
   };
 
@@ -64,7 +64,7 @@ export const SearchPage: FC = () => {
 
       if (data.total < 500) dispatch(setTotal(data.total));
     } else {
-      navigate(Paths.EMPTY_STATE, { replace: true });
+      navigate(Paths.EMPTY_STATE, { replace: true, state: 'main' });
     }
   };
 

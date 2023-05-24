@@ -89,6 +89,7 @@ export const VacancyPage: FC = () => {
             border: `1px solid ${colors.grey[1]}`,
             borderRadius: other.br,
             padding: '24px',
+            paddingTop: '15px',
           })}
         >
           {data.vacancyRichText ? (

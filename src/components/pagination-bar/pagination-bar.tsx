@@ -81,7 +81,7 @@ export const PaginationBar: FC<PaginationBarProps> = ({ hadleClick, totalAmount 
         />
       ) : (
         <Pagination
-          total={pagSearch.total / pagSearch.count}
+          total={(pagSearch.total - 1) / pagSearch.count}
           value={pagSearch.page}
           siblings={0}
           onChange={setNumberPage}

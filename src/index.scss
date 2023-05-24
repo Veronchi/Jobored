@@ -8,7 +8,6 @@
 body {
   min-width: 320px;
   height: 100vh;
-  background-color: $background;
   @include inter;
   font-style: normal;
   color: $black;
@@ -24,6 +23,7 @@ body {
 main {
   flex: 1 1 auto;
   padding: 40px 23% 44px;
+  background-color: $background;
 
   @media (max-width: 960px) {
     padding-left: 15%;

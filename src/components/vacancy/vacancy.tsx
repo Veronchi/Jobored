@@ -82,7 +82,7 @@ export const Vacancy: FC<VacancyProps> = ({ isLink, vacancy }) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           width: '100%',
-          marginBottom: isLink ? '12px' : ' 16px',
+          marginBottom: isLink ? '13px' : ' 15px',
 
           '@media (max-width: 390px)': {
             flexDirection: 'column',
@@ -117,8 +117,8 @@ export const Vacancy: FC<VacancyProps> = ({ isLink, vacancy }) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
-          marginBottom: '12px',
+          gap: isLink ? '13px' : '17px',
+          marginBottom: isLink ? '13px' : ' 18px',
 
           '@media (max-width: 390px)': {
             flexDirection: 'column',
