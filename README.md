@@ -8,7 +8,7 @@
 - Axios
 - Mantine
 
-## Install and usage project
+## Install and usage of the project
 
 1. Clone the repo
 
